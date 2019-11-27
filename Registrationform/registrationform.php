@@ -50,8 +50,37 @@ if($num > 0){echo"number of rows is greater than 0"; die();}
 //***************************************************************************************************************************
 
 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($firstname)) {
+        print "<br>Error in Firstname Field: you must enter your firstname<br>";
+    }
 
+    if (empty($lastname)) {
+        print "<br>Error in Lastname Field: you must enter your lastname<br>";
+    }
 
+    if (empty($birthday)) {
+        print "<br>Error in Birthday Field: you must enter your birthday<br>";
+    }
+
+    if (empty($email)) {
+        print "<br>Error in Firstname Field: you must enter your email<br>";
+    }
+
+    $j = strpos($email, '@');
+    if ($j == false) {
+        print "<br>Error in Email Field: no @ characters found<br>";
+    }
+
+    if (empty($password)) {
+        print "<br>Error in Firstname Field: you must enter your firstname<br>";
+    }
+
+    $passlen = strlen($password);
+    if ($passlen < 8) {
+        echo "<br>Error in Password Field: invalid password length: " . $password . " is not at least 8 characters long<br>";
+    }
+}
 
 $query = 'INSERT INTO accountsIS218 (email, fname, lname, birthday, password)
           VALUES (:email, :fname, :lname, :birthday, :password)';
@@ -71,35 +100,9 @@ $statement->execute();
 
 //Close the datab
 $statement->closeCursor();
-
-if(empty($firstname)){
-    print "<br>Error in Firstname Field: you must enter your firstname<br>";
-}
-
-if(empty($lastname)){
-    print "<br>Error in Lastname Field: you must enter your lastname<br>";
-}
-
-if(empty($birthday)){
-    print "<br>Error in Birthday Field: you must enter your birthday<br>";
-}
-
-if(empty($email)){
-    print "<br>Error in Firstname Field: you must enter your email<br>";
-}
-
-$j = strpos($email, '@');
-if($j == false){print "<br>Error in Email Field: no @ characters found<br>";}
-
-if(empty($password)){
-    print "<br>Error in Firstname Field: you must enter your firstname<br>";
-}
-
-$passlen = strlen($password);
-if ($passlen < 8) {
-    echo "<br>Error in Password Field: invalid password length: " . $password . " is not at least 8 characters long<br>";
-}
-
+/*
+header("Location: ../LoginForm/displayquestion.php?fname=$firstname&lname=$lastname&birthday=$birthday&email=$email&password=$password");
+*/
 ?>
 
 <?php

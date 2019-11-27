@@ -87,10 +87,27 @@ if(count($values)>0){
 header("Location: displayquestion.php?fname=$firstname&lastname=$lastname&email=$email");       //made everything work
 }
 */
-/*
-header("Location: ../LoginForm/displayquestion.php?id=$userId");
-*/
+
+
+
+
 ?>
+
+<?php
+/*
+$firstname = filter_input(INPUT_POST, 'fname');
+$lastname = filter_input(INPUT_POST, 'lname');
+$birthday = filter_input(INPUT_POST, 'birthday');
+$email = filter_input(INPUT_POST, 'email');
+*/
+
+$userId = filter_input(INPUT_GET,'userId');
+header("Location: ../LoginForm/displayquestion.php?id=$userId");
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
